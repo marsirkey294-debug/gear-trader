@@ -1,0 +1,6 @@
+[{"name":"G440 SFT ヘッド","cost_jpy":30500,"kind":"head","sold_usd":[339.99,350]},
+ {"name":"G430 MAX 10K ヘッド","cost_jpy":26300,"kind":"head","sold_usd":[250,299,375,385]},
+ {"name":"G440 LST ヘッド","cost_jpy":44000,"kind":"head","sold_usd":[390.99,439.99,469]},
+ {"name":"G440 MAX ヘッド","cost_jpy":41500,"kind":"head","sold_usd":[335,356.01,409]},
+ {"name":"三浦技研 TB-ZERO 6本","cost_jpy":109800,"kind":"iron_set","asking_usd":[1232]},
+ {"name":"G440 SFT（相場指定）","cost_jpy":30500,"kind":"head","price_usd":350}]
