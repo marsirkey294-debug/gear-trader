@@ -36,6 +36,9 @@ python skill/scripts/profit_calc.py --rate 155 --avg30 153 \
 | 売れる速さと値動きの大きさを見る、ウォッチリストで値下がりを待つ | BlekSoft/MarketDelta-Ebay-Arbitrage-Engine、Arshiaheravi/autoflip |
 | eBayのデータは公式APIか、サインインしたブラウザで見る（自動読み取りは利用規約違反） | dnadeau/sports-card-manager |
 | 為替と関税まで含めた利益計算 | emijuri0514-gif/mercari-ebay-lister |
+| 指摘に重さを付け、重大な指摘が残る限り合格にしない。直らなければオーナーに上げる | alirezarezvani/claude-skills（human-gate） |
+| 部隊は自分が判定される基準を変えない。台帳で前回から再開する | alirezarezvani/claude-skills（agent-harness） |
+| 予想と実績の答え合わせで、ルールを根拠付きで見直す | alirezarezvani/claude-skills（skill-retro） |
 
 ## スキルとして使う
 
