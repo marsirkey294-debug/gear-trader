@@ -38,7 +38,11 @@ import sys
 FEE_RATE = 0.15      # eBay手数料（落札手数料＋海外取引手数料）の目安
 FX_FEE_RATE = 0.02   # 為替・入金手数料の目安
 NET = 1 - FEE_RATE - FX_FEE_RATE  # = 0.83
-SHIPPING = {"head": 4000, "shaft": 6000, "club": 7000, "iron_set": 10000}
+# 送料の目安（円）。2026-11の調査：ヘッド約1kgで米国2,600〜5,300円、英国・豪州2,100〜4,400円。
+# 日本郵便は2027-02-01に値上げ（EMS米国1kg 5,300→7,400円）のため、ヘッドは高めに置く。
+# シャフト・完成品・アイアンは未調査の仮の値。実費が分かったら直す（変更はオーナーの承認後）
+SHIPPING = {"head": 5000, "shaft": 6000, "club": 7000, "iron_set": 10000}  # 米国宛て
+SHIPPING_HEAD_BY_DEST = {"us": 5000, "uk": 3500, "au": 3500}
 PACKING = {"head": 500, "shaft": 500, "club": 500, "iron_set": 1000}
 TARGET = 0.15        # 仕入れ候補にする利益率
 FLOOR_5YEN = 0.10    # 5円円高でも残すべき利益率
@@ -91,11 +95,19 @@ def market(item: dict) -> dict:
     raise ValueError(f"{item.get('name')}: sold_usd / price_usd / asking_usd のどれかが必要です")
 
 
+def ship(item: dict) -> float:
+    """送料。ヘッドは送り先（dest: us / uk / au、省略時は us）で変える"""
+    kind = item.get("kind", "head")
+    if kind == "head":
+        return SHIPPING_HEAD_BY_DEST.get(item.get("dest", "us"), SHIPPING["head"])
+    return SHIPPING[kind]
+
+
 def profit(item: dict, usd: float, rate: float) -> tuple:
     kind = item.get("kind", "head")
     cost = float(item["cost_jpy"])
     refund = cost * 10 / 110 if item.get("tax_refund") else 0.0
-    p = usd * rate * NET - SHIPPING[kind] - PACKING[kind] - cost + refund
+    p = usd * rate * NET - ship(item) - PACKING[kind] - cost + refund
     return p, (p / cost if cost else 0.0)
 
 
@@ -103,7 +115,7 @@ def breakeven(item: dict, usd: float, margin: float) -> float:
     kind = item.get("kind", "head")
     cost = float(item["cost_jpy"])
     refund = cost * 10 / 110 if item.get("tax_refund") else 0.0
-    return (cost * (1 + margin) + SHIPPING[kind] + PACKING[kind] - refund) / (usd * NET)
+    return (cost * (1 + margin) + ship(item) + PACKING[kind] - refund) / (usd * NET)
 
 
 def score(m_now: float, m_worst: float, worst_profit: float, cost: float, conf: str) -> tuple:

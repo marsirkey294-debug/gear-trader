@@ -5,6 +5,7 @@
 チーム（為替担当と5つの部隊）が行うのは、調査・計算・提案・報告書づくりまでです。仕入れ・出品・支払いなど、お金が動く決定はオーナーが行います。
 
 - 計画書（Claude Docs）：https://claude.ai/artifact/J9BXiA81QtBGz3w1AWtb8M
+- 作業手順書（Claude Docs）：https://claude.ai/artifact/Wwj4KNm5xanG6upbkikZfA
 - 毎朝7時45分：定期実行タスク「ギアトレイダー 為替チェック」がレートと撤退ラインの段階を通知
 
 ## 中身
@@ -16,6 +17,10 @@
 | `skill/references/teams.md` | 為替担当と5つの部隊への指示 |
 | `skill/scripts/profit_calc.py` | 相場（落札価格の中央値）、利益、為替シナリオ、悪いケース、取引スコアの計算 |
 | `simulation/` | PINGの価格差シミュレーション（Excel）と、計算スクリプトの入力例 |
+| `docs/作業手順書.md` | 状態の等級（S〜C）、仕入れないもの、撮影、梱包、送料の調査、米国の関税、返品条件、英語の定型返信 |
+| `docs/海外人気度_メーカー別.xlsx` | メーカー別の海外人気度の調査 |
+| `docs/運営リスク一覧.xlsx` | 運営が止まりそうなリスクと対策 |
+| `docs/gt_logo*.png` | 社名ロゴ |
 
 ## 計算スクリプトの使い方
 
